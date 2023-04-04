@@ -3,9 +3,10 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-document.addEventListener('DOMContentLoaded', ()=> {
-  let errorMsg = document.querySelector('#modal')
+let errorMsg = document.querySelector('#modal')
   errorMsg.className = "hidden"
+
+document.addEventListener('DOMContentLoaded', ()=> {
 
   //grab all post elements
   let post = document.querySelectorAll('.media-post')

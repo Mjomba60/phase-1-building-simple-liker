@@ -3,7 +3,38 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+document.addEventListener('DOMContentLoaded', ()=> {
+  let errorMsg = document.querySelector('#modal')
+  errorMsg.className = "hidden"
 
+  //grab all post elements
+  let post = document.querySelectorAll('.media-post')
+
+  //iterate over posts and add eventlistener to elements
+  for(const element of post){
+    let like = element.lastElementChild.getElementsByTagName('span').item(0)
+    like.addEventListener('click', () => {
+      mimicServerCall()
+      .then(likeChecker(like))
+      .catch((e) => {
+        errorMsg.classList.remove("hidden")
+        errorMsg.lastElementChild.textContent = e.message
+        setTimeout(errorMsg.className = "hidden", 300)
+      })
+    })
+  }
+  
+})
+
+//manipulate like based on its content
+function likeChecker(element){
+  if(element.innerText != FULL_HEART){
+    element.innerText = FULL_HEART
+    element.className = "activated-heart"
+  }else {
+    element.innerText = EMPTY_HEART
+  }
+}
 
 
 
